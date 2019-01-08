@@ -34,7 +34,7 @@ function appReducer(state = initialState, action) {
 
     case FETCH_CAT_BREEDS_SUCCESS:
       return state
-        .set('catBreeds', List(action.catBreeds.petfinder.breeds.breed))
+        .set('catBreeds', List(action.catBreeds))
         .set('loading', false)
 
     case FETCH_CAT_BREEDS_FAIL:

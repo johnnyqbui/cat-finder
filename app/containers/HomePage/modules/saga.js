@@ -10,15 +10,24 @@ import request from 'utils/request';
 import fetchJsonp from 'fetch-jsonp';
 
 const METHOD = 'breed.list'
-const BASE_URL = `https://api.petfinder.com/${METHOD}?format=json&animal=cat`
-
+const PET_FINDER_BASE_URL = `https://api.petfinder.com/${METHOD}?format=json&animal=cat`
+const THE_CAT_API_BASE_URL = `https://api.thecatapi.com/v1/breeds`
 export function* getCatBreeds() {
-  const requestURL = `${BASE_URL}&key=${process.env.PETFINDER_API_KEY}`;
+  // const requestURL = `${PET_FINDER_BASE_URL}&key=${process.env.PETFINDER_API_KEY}`;
+
+  const requestURL = `${THE_CAT_API_BASE_URL}`;
 
   try {
-    const response = yield fetchJsonp(requestURL)
-      .then(response => response.json())
-      .then(json => json)
+    // const response = yield fetchJsonp(requestURL)
+    //   .then(response => response.json())
+    //   .then(json => json)
+
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        'x-api-key': process.env.THECAT_API_KEY
+      }
+    })
 
     yield put(fetchCatBreedsSuccess(response))
 
