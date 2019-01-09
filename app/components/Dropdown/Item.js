@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Li = styled.li`
-  color: rgba(51, 51, 51, 0.8);
+  color: #777;
   cursor: pointer;
   display: block;
   padding: 16px 0px;
@@ -10,7 +10,6 @@ const Li = styled.li`
   &:hover {
     background-color: #CCC
   }
-
   &:last-child {
     border-bottom: 0;
   }

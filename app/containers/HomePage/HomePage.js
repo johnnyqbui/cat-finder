@@ -53,7 +53,11 @@ export default class HomePage extends React.PureComponent {
           </ul>
           <div>
             <p>Select Cat Breed:</p>
-            <Dropdown options={breeds} selectedItem={(item) => this.onSelectedBreed(item)}/>
+            <Dropdown
+              placeholder={'Search breeds'}
+              options={breeds}
+              selectedItem={(item) => this.onSelectedBreed(item)}
+            />
           </div>
           {
             this.state.selectedBreed &&
