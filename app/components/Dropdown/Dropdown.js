@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import memoize from 'memoize-one';
 import List from './List'
 import Item from './Item'
 import SelectedItem from './SelectedItem'
@@ -14,7 +15,8 @@ class Dropdown extends Component {
     this.state = {
       active: false,
       selectedItem: '',
-      options: props.options
+      options: props.options,
+      value: ''
     }
   }
 
@@ -44,53 +46,58 @@ class Dropdown extends Component {
     })
   }
 
-  onClickDropDown = () => {
+  handleClickDropDown = () => {
     this.setState({
       active: true
     })
   }
 
-  onSelectItem = (item) => {
+  handleSelectItem = (item) => {
     this.props.selectedItem(item)
     this.setState({
       active: false,
-      selectedItem: item
+      selectedItem: item,
+      value: item
     })
   }
 
-  onChange = (event) => {
-    const filteredOptions = this.props.options.filter(option => {
-      const lowerCaseOption = option.toLowerCase()
-      const lowerCaseInput = event.target.value.toLowerCase()
-      return lowerCaseOption.indexOf(lowerCaseInput) > -1
-    })
-
+  handleChange = (event) => {
     this.setState({
-      selectedItem: event.target.value,
-      options: filteredOptions
+      value: event.target.value,
     })
   }
+
+  filter = memoize(
+    (options, value) => options.filter(option => {
+      const lowerCaseOption = option.toLowerCase()
+      const lowerCaseValue = value.toLowerCase()
+      return lowerCaseOption.includes(lowerCaseValue)
+    })
+  );
 
   render() {
+    const filteredOptions = this.filter(this.props.options, this.state.value)
+
     return (
       <Container ref={this.setWrapperRef}>
         <SearchBar
+          value={this.state.value}
           placeholder={this.props.placeholder}
           selectedItem={this.state.selectedItem}
-          onClick={this.onClickDropDown}
-          onChange={this.onChange}
+          onClick={this.handleClickDropDown}
+          onChange={this.handleChange}
         />
         {/* <SelectedItem onClick={this.onToggleDropDown}>
           {this.state.selectedItem}
         </SelectedItem> */}
         <List active={this.state.active}>
           {
-            this.state.options.length > 0
-            ? this.state.options.map(option =>
+            filteredOptions.length > 0
+            ? filteredOptions.map(option =>
                 <Item
                   key={option}
                   item={option}
-                  onClick={this.onSelectItem}
+                  onClick={this.handleSelectItem}
                 />
               )
             : <EmptySearch>Unable to find breed, try again</EmptySearch>

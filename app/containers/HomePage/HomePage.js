@@ -21,9 +21,8 @@ export default class HomePage extends React.PureComponent {
   }
 
   onSelectedBreed(breed) {
-    const selectedBreedData = this.props.catBreeds.filter(cat => cat.name === breed)[0]
     this.setState({
-      selectedBreed: selectedBreedData
+      selectedBreed: breed
     })
   }
 
@@ -31,6 +30,8 @@ export default class HomePage extends React.PureComponent {
     const { selectedBreed } = this.state;
     const { loading, error, catBreeds } = this.props;
     const breeds = flattenArr(catBreeds, 'name');
+
+    const filteredSelectedBreed = this.props.catBreeds.filter(cat => cat.name === selectedBreed)[0]
 
     return (
       <article>
@@ -60,10 +61,10 @@ export default class HomePage extends React.PureComponent {
             />
           </div>
           {
-            this.state.selectedBreed &&
+            filteredSelectedBreed &&
             <div>
-              <p>Name: {selectedBreed.name}</p>
-              <p>Temperament: {selectedBreed.temperament}</p>
+              <p>Name: {filteredSelectedBreed.name}</p>
+              <p>Temperament: {filteredSelectedBreed.temperament}</p>
             </div>
           }
 

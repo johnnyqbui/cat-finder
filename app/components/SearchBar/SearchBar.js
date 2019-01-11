@@ -6,28 +6,15 @@ class SearchBar extends Component {
     super(props)
 
     this.state = {
-      value: props.selectedItem || '',
       isFocused: false
     }
   }
 
-  componentDidUpdate(prevProps) {
-    (this.props.selectedItem !== prevProps.selectedItem) && (
-      this.setState({
-        value: this.props.selectedItem
-      })
-    )
-  }
-
-  onChange = (event) => {
-    this.setState({value: event.target.value});
-  }
-
-  onFocus = () => {
+  handleFocus = () => {
     this.setState({isFocused: true})
   }
 
-  onBlur = () => {
+  handleBlur = () => {
     this.setState({isFocused:false})
   }
 
@@ -35,11 +22,10 @@ class SearchBar extends Component {
     return (
       <Input
         type='text'
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         focused={this.state.isFocused}
-        value={this.state.value}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         {...this.props}
       />
     )
