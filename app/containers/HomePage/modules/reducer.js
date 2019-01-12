@@ -11,7 +11,11 @@
  */
 import { fromJS } from 'immutable';
 
-import { FETCH_CAT_BREED_IMAGE_REQUEST, FETCH_CAT_BREED_IMAGE_SUCCESS, FETCH_CAT_BREED_IMAGE_FAIL } from './constants';
+import {
+  FETCH_CAT_BREED_IMAGE_REQUEST,
+  FETCH_CAT_BREED_IMAGE_SUCCESS,
+  FETCH_CAT_BREED_IMAGE_FAIL
+} from './constants';
 
 // The initial state of the App
 export const initialState = fromJS({
@@ -21,9 +25,10 @@ export const initialState = fromJS({
 function homeReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_CAT_BREED_IMAGE_REQUEST:
-      return state.set();
+      return state.set('imageURL', '');
     case FETCH_CAT_BREED_IMAGE_SUCCESS:
-      return state.set('imageURL', action.imageURL);
+    console.log(action.data[0].url)
+      return state.set('imageURL', action.data[0].url);
     case FETCH_CAT_BREED_IMAGE_FAIL:
       return state.set('imageURL', action.error);
     default:

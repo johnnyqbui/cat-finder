@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import memoize from 'memoize-one';
 import Dropdown from 'components/Dropdown'
 import { flattenArr } from './utils/flattenArr'
 
@@ -21,20 +22,26 @@ export default class HomePage extends React.PureComponent {
   }
 
   onSelectedBreed(breed) {
+    const filteredSelectedBreed = this.props.catBreeds.filter(cat => cat.name === breed)[0]
+    this.props.fetchCatImage(filteredSelectedBreed.id)
     this.setState({
-      selectedBreed: breed
+      selectedBreed: filteredSelectedBreed
     })
   }
+
+  filter = memoize(
+    (catBreeds, selectedBreed) => catBreeds.filter(cat => {
+      return cat.name === selectedBreed.name
+    })
+  );
 
   render() {
     const { selectedBreed } = this.state;
     const { loading, error, catBreeds } = this.props;
     const breedNames = flattenArr(catBreeds, 'name');
 
-    console.log(catBreeds)
-
-    const filteredSelectedBreed = this.props.catBreeds.filter(cat => cat.name === selectedBreed)[0]
-
+    const filteredSelectedBreed = this.filter(this.props.catBreeds, selectedBreed)[0]
+    console.log(this.props)
     return (
       <article>
         <Helmet>

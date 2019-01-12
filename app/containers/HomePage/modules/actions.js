@@ -15,7 +15,11 @@
  *    }
  */
 
-import { FETCH_CAT_BREED_IMAGE_REQUEST, FETCH_CAT_BREED_IMAGE_SUCCESS, FETCH_CAT_BREED_IMAGE_FAIL } from './constants';
+import {
+  FETCH_CAT_BREED_IMAGE_REQUEST,
+  FETCH_CAT_BREED_IMAGE_SUCCESS,
+  FETCH_CAT_BREED_IMAGE_FAIL
+} from './constants';
 
 /**
  * Changes the input field of the form
@@ -24,16 +28,22 @@ import { FETCH_CAT_BREED_IMAGE_REQUEST, FETCH_CAT_BREED_IMAGE_SUCCESS, FETCH_CAT
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function fetchCatBreedImageSuccess(breedId) {
+export function fetchCatBreedImageRequest(breedId) {
   return {
-    type: FETCH_CAT_BREED_IMAGE_SUCCESS,
+    type: FETCH_CAT_BREED_IMAGE_REQUEST,
     breedId,
   };
 }
+export function fetchCatBreedImageSuccess(data) {
+  return {
+    type: FETCH_CAT_BREED_IMAGE_SUCCESS,
+    data,
+  };
+}
 
-export function fetchCatBreedImageFail(breedId) {
+export function fetchCatBreedImageFail(error) {
   return {
     type: FETCH_CAT_BREED_IMAGE_FAIL,
-    breedId,
+    error,
   };
 }

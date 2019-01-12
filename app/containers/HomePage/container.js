@@ -6,11 +6,18 @@ import {
   makeSelectCatBreeds,
 } from 'containers/App/modules/selectors';
 
-import { fetchCatBreeds } from 'containers/App/modules/actions';
+import {
+  makeSelectCatBreedImage,
+} from './modules/selectors';
+
+
+import { fetchCatBreedsRequest } from 'containers/App/modules/actions';
+import { fetchCatBreedImageRequest } from './modules/actions';
 
 export function mapDispatchToProps(dispatch) {
   return {
-    fetchCats: () => dispatch(fetchCatBreeds())
+    fetchCats: () => dispatch(fetchCatBreedsRequest()),
+    fetchCatImage:(breedId) => dispatch(fetchCatBreedImageRequest(breedId))
   };
 }
 
@@ -18,6 +25,7 @@ export function mapStateToProps() {
   return createStructuredSelector({
     loading: makeSelectLoading(),
     error: makeSelectError(),
-    catBreeds: makeSelectCatBreeds()
+    catBreeds: makeSelectCatBreeds(),
+    catImage: makeSelectCatBreedImage()
   })
 };

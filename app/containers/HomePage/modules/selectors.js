@@ -10,4 +10,4 @@ const selectCatBreedImage = state => state.get('catImage', initialState);
 const makeSelectCatBreedImage = () =>
   createSelector(selectCatBreedImage, catBreedImageState => catBreedImageState.get('imageURL'));
 
-export { selectCatBreedImage, makeSelectCatBreedImage };
+  export { selectCatBreedImage, makeSelectCatBreedImage };

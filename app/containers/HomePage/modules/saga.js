@@ -3,8 +3,11 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { FETCH_CAT_BREEDS } from 'containers/App/modules/constants';
+import { FETCH_CAT_BREEDS_REQUEST } from 'containers/App/modules/constants';
+import { FETCH_CAT_BREED_IMAGE_REQUEST } from './constants';
+
 import { fetchCatBreedsSuccess, fetchCatBreedsFailed } from 'containers/App/modules/actions';
+import { fetchCatBreedImageSuccess, fetchCatBreedImageFailed } from './actions';
 
 import request from 'utils/request';
 import fetchJsonp from 'fetch-jsonp';
@@ -37,9 +40,9 @@ export function* getCatBreeds() {
   }
 }
 
-export function* getCatBreedImage(breedId) {
-  const requestURL = `${THE_CAT_API_BASE_URL}/images/search?breed_id${breedId}`;
-
+export function* getCatBreedImage(params) {
+  const { breedId } = params
+  const requestURL = `${THE_CAT_API_BASE_URL}/images/search?breed_id=${breedId}`;
   try {
     const response = yield call(request, requestURL, {
       method: 'GET',
@@ -65,6 +68,6 @@ export default function* watcherCatBreeds() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(FETCH_CAT_BREEDS_REQUEST, getCatBreeds);
-  yield takeLatest(FETCH_CAT_BREED_IMAGE_REQUEST, getCatBreeds);
+  yield takeLatest(FETCH_CAT_BREED_IMAGE_REQUEST, getCatBreedImage);
 
 }
