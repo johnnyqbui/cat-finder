@@ -29,7 +29,9 @@ export default class HomePage extends React.PureComponent {
   render() {
     const { selectedBreed } = this.state;
     const { loading, error, catBreeds } = this.props;
-    const breeds = flattenArr(catBreeds, 'name');
+    const breedNames = flattenArr(catBreeds, 'name');
+
+    console.log(catBreeds)
 
     const filteredSelectedBreed = this.props.catBreeds.filter(cat => cat.name === selectedBreed)[0]
 
@@ -56,7 +58,7 @@ export default class HomePage extends React.PureComponent {
             <p>Select Cat Breed:</p>
             <Dropdown
               placeholder={'Search breeds'}
-              options={breeds}
+              options={breedNames}
               selectedItem={(item) => this.onSelectedBreed(item)}
             />
           </div>
@@ -65,6 +67,7 @@ export default class HomePage extends React.PureComponent {
             <div>
               <p>Name: {filteredSelectedBreed.name}</p>
               <p>Temperament: {filteredSelectedBreed.temperament}</p>
+              <p>Origin: {filteredSelectedBreed.origin}</p>
             </div>
           }
 

@@ -11,18 +11,21 @@
  */
 import { fromJS } from 'immutable';
 
-import { CHANGE_USERNAME } from './constants';
+import { FETCH_CAT_BREED_IMAGE_REQUEST, FETCH_CAT_BREED_IMAGE_SUCCESS, FETCH_CAT_BREED_IMAGE_FAIL } from './constants';
 
 // The initial state of the App
 export const initialState = fromJS({
-  username: '',
+  imageURL: '',
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return state.set('username', action.name.replace(/@/gi, ''));
+    case FETCH_CAT_BREED_IMAGE_REQUEST:
+      return state.set();
+    case FETCH_CAT_BREED_IMAGE_SUCCESS:
+      return state.set('imageURL', action.imageURL);
+    case FETCH_CAT_BREED_IMAGE_FAIL:
+      return state.set('imageURL', action.error);
     default:
       return state;
   }

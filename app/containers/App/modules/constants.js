@@ -9,6 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const FETCH_CAT_BREEDS = 'catsInfo/App/FETCH_CAT_BREEDS';
+export const FETCH_CAT_BREEDS_REQUEST = 'catsInfo/App/FETCH_CAT_BREEDS_REQUEST';
 export const FETCH_CAT_BREEDS_SUCCESS = 'catsInfo/App/FETCH_CAT_BREEDS_SUCCESS';
 export const FETCH_CAT_BREEDS_FAIL = 'catsInfo/App/FETCH_CAT_BREEDS_FAIL';

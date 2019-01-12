@@ -21,18 +21,18 @@ class Dropdown extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.onOutsideClick);
+    document.addEventListener('click', this.handleOutsideClick);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onOutsideClick);
+    document.removeEventListener('click', this.handleOutsideClick);
   }
 
   setWrapperRef = (node) => {
     this.wrapperRef = node;
   }
 
-  onOutsideClick = (event) => {
+  handleOutsideClick = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({
         active: false
@@ -40,7 +40,7 @@ class Dropdown extends Component {
     }
   }
 
-  onToggleDropDown = () => {
+  handleToggleDropDown = () => {
     this.setState({
       active: !this.state.active,
     })
@@ -87,7 +87,7 @@ class Dropdown extends Component {
           onClick={this.handleClickDropDown}
           onChange={this.handleChange}
         />
-        {/* <SelectedItem onClick={this.onToggleDropDown}>
+        {/* <SelectedItem onClick={this.handleToggleDropDown}>
           {this.state.selectedItem}
         </SelectedItem> */}
         <List active={this.state.active}>

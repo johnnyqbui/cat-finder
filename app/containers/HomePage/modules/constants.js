@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'catsInfo/HomePage/CHANGE_USERNAME';
+export const FETCH_CAT_BREED_IMAGE_REQUEST = 'catsInfo/HomePage/modules/FETCH_CAT_BREED_IMAGE_REQUEST';
+export const FETCH_CAT_BREED_IMAGE_SUCCESS = 'catsInfo/HomePage/modules/FETCH_CAT_BREED_IMAGE_SUCCESS';
+export const FETCH_CAT_BREED_IMAGE_FAIL = 'catsInfo/HomePage/modules/FETCH_CAT_BREED_IMAGE_FAIL';

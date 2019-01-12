@@ -13,7 +13,7 @@
 import { List, fromJS } from 'immutable';
 
 import {
-  FETCH_CAT_BREEDS,
+  FETCH_CAT_BREEDS_REQUEST,
   FETCH_CAT_BREEDS_SUCCESS,
   FETCH_CAT_BREEDS_FAIL
 } from './constants';
@@ -27,7 +27,7 @@ export const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_CAT_BREEDS:
+    case FETCH_CAT_BREEDS_REQUEST:
       return state
         .set('loading', true)
         .set('error', false)

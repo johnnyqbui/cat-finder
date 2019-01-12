@@ -16,7 +16,7 @@
  */
 
 import {
-  FETCH_CAT_BREEDS,
+  FETCH_CAT_BREEDS_REQUEST,
   FETCH_CAT_BREEDS_SUCCESS,
   FETCH_CAT_BREEDS_FAIL
 } from './constants';
@@ -26,9 +26,9 @@ import {
  *
  * @return {object} An action object with a type
  */
-export function fetchCatBreeds() {
+export function fetchCatBreedsRequest() {
   return {
-    type: FETCH_CAT_BREEDS,
+    type: FETCH_CAT_BREEDS_REQUEST,
   };
 }
 

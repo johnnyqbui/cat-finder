@@ -15,7 +15,7 @@ class SearchBar extends Component {
   }
 
   handleBlur = () => {
-    this.setState({isFocused:false})
+    this.setState({isFocused: false})
   }
 
   render() {
@@ -25,7 +25,6 @@ class SearchBar extends Component {
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         focused={this.state.isFocused}
-        onChange={this.handleChange}
         {...this.props}
       />
     )
