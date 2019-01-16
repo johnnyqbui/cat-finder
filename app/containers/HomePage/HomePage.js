@@ -9,6 +9,9 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import memoize from 'memoize-one';
 import Dropdown from 'components/Dropdown'
+import Image from 'components/Image'
+import LoadingIndicator from 'components/LoadingIndicator'
+
 import { flattenArr } from './utils/flattenArr'
 
 /* eslint-disable react/prefer-stateless-function */
@@ -77,7 +80,10 @@ export default class HomePage extends React.PureComponent {
               <p>Origin: {filteredSelectedBreed.origin}</p>
             </div>
           }
-
+          { this.props.catImage
+            ? <Image src={this.props.catImage} />
+            : <LoadingIndicator />
+          }
         </div>
       </article>
     );
@@ -87,5 +93,6 @@ export default class HomePage extends React.PureComponent {
 HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  catBreeds: PropTypes.array
+  catBreeds: PropTypes.array,
+  catImage: PropTypes.string
 };

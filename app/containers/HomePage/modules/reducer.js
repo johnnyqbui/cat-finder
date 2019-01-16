@@ -27,7 +27,6 @@ function homeReducer(state = initialState, action) {
     case FETCH_CAT_BREED_IMAGE_REQUEST:
       return state.set('imageURL', '');
     case FETCH_CAT_BREED_IMAGE_SUCCESS:
-    console.log(action.data[0].url)
       return state.set('imageURL', action.data[0].url);
     case FETCH_CAT_BREED_IMAGE_FAIL:
       return state.set('imageURL', action.error);

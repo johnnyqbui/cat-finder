@@ -5,9 +5,9 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectCatBreedImage = state => state.get('catImage', initialState);
+const selectHomeState = state => state.get('home', initialState);
 
 const makeSelectCatBreedImage = () =>
-  createSelector(selectCatBreedImage, catBreedImageState => catBreedImageState.get('imageURL'));
+  createSelector(selectHomeState, homeState => homeState.get('imageURL'));
 
-  export { selectCatBreedImage, makeSelectCatBreedImage };
+  export { selectHomeState, makeSelectCatBreedImage };
